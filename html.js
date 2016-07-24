@@ -1,11 +1,9 @@
-import React from 'react'
-import DocumentTitle from 'react-document-title'
+import React from 'react';
+import DocumentTitle from 'react-document-title';
 
-import { prefixLink } from 'gatsby-helpers'
-import { TypographyStyle } from 'typography-react'
-import typography from './utils/typography'
+import { prefixLink } from 'gatsby-helpers';
 
-const BUILD_TIME = new Date().getTime()
+const BUILD_TIME = new Date().getTime();
 
 module.exports = React.createClass({
   propTypes () {
@@ -14,9 +12,9 @@ module.exports = React.createClass({
     }
   },
   render () {
-    const title = DocumentTitle.rewind()
+    const title = DocumentTitle.rewind();
 
-    let css
+    let css;
     if (process.env.NODE_ENV === 'production') {
       css = <style dangerouslySetInnerHTML={{ __html: require('!raw!./public/styles.css') }} />
     }
@@ -32,7 +30,8 @@ module.exports = React.createClass({
           />
           <title>{title}</title>
           <link rel="shortcut icon" href={this.props.favicon} />
-          <TypographyStyle typography={typography} />
+          <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+          <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css' />
           {css}
         </head>
         <body>
@@ -42,4 +41,4 @@ module.exports = React.createClass({
       </html>
     )
   },
-})
+});
