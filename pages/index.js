@@ -2,6 +2,14 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
 import { config } from 'config';
+import {
+  Grid,
+  Row,
+  Col,
+  FormGroup,
+  FormControl,
+  Button
+} from 'react-bootstrap';
 
 import 'bootstrap/less/bootstrap.less';
 import 'font-awesome/less/font-awesome.less';
@@ -53,89 +61,122 @@ export default class Index extends React.Component {
             </div>
           </header>
 
-          <section className="bg-primary" id="about">
+          <section className="bg-primary" id="societe">
             <div className="container">
               <div className="row">
                 <div className="col-lg-8 col-lg-offset-2 text-center">
-                  <h2 className="section-heading">We've got what you need!</h2>
+                  <h2 className="section-heading">
+                    Société
+                  </h2>
                   <hr className="light" />
-                  <p className="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-                  <a href="#services" className="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+                  <p className="text-faded">
+                    Investigations des sols, gaz du sol et eaux souterrainnes dans des zones à accès difficile
+                  </p>
+                  <p className="text-faded">
+                    Plus de 500 interventions, depuis 2014, de sondages environnementaux
+                    dans le cadre de diagnostics de pollution des sols
+                  </p>
                 </div>
               </div>
             </div>
           </section>
 
           <section id="services">
-            <div className="container">
+            <div className="container container-small">
               <div className="row">
                 <div className="col-lg-12 text-center">
-                  <h2 className="section-heading">At Your Service</h2>
+                  <h2 className="section-heading">Services</h2>
                   <hr className="primary" />
                 </div>
               </div>
-            </div>
-            <div className="container">
               <div className="row">
-                <div className="col-lg-3 col-md-6 text-center">
-                  <div className="service-box">
-                    <i className="fa fa-4x fa-diamond text-primary sr-icons"></i>
-                    <h3>Sturdy Templates</h3>
-                    <p className="text-muted">Our templates are updated regularly so they don't break.</p>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 text-center">
-                  <div className="service-box">
-                    <i className="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-                    <h3>Ready to Ship</h3>
-                    <p className="text-muted">You can use this theme as is, or you can make changes!</p>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 text-center">
-                  <div className="service-box">
-                    <i className="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
-                    <h3>Up to Date</h3>
-                    <p className="text-muted">We update dependencies to keep things fresh.</p>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 text-center">
-                  <div className="service-box">
-                    <i className="fa fa-4x fa-heart text-primary sr-icons"></i>
-                    <h3>Made with Love</h3>
-                    <p className="text-muted">You have to make your websites with love these days!</p>
-                  </div>
+                <div className="col-lg-12">
+                  <h3>Avantages de la technique</h3>
+                  <ul>
+                    <li>Contraintes d’accès très limités, L1m x l1m x H1.90m</li>
+                    <li>Impact sur la zone d’intervention pendant et après chantier minime</li>
+                    <li>Machines électriques (intervention en espace confiné)</li>
+                    <li>Matériaux non remaniés pour un relevé lithologique précis</li>
+                  </ul>
+                  <h3>Limites techniques</h3>
+                  <ul>
+                    <li>Investigations jusqu’à 8 m de profondeur en fonction de la géologie</li>
+                    <li>Diamètre de forage de Ø40mm à Ø80mm maximum</li>
+                  </ul>
+                  <h3>Politique qualité securité</h3>
+                  <ul>
+                    <li>
+                      Possibilité de mise à disposition d’un détecteur de réseaux et d’un explosimètre
+                    </li>
+                    <li>
+                      Intervenants ayant suivit les formations Sauveteur Secouriste
+                      du Travail et Risque Chimique Niveau 2
+                    </li>
+                    <li>
+                      Sensibilisation aux risques liés à l’activité et notament aux gestes et postures.
+                      Recherche continue d’amélioration du poste de travail et de réduction des temps d’expositions.
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </section>
 
-          <aside className="bg-dark">
-            <div className="container text-center">
-              <div className="call-to-action">
-                <h2>Free Download at Start Bootstrap!</h2>
-                <a href="http://startbootstrap.com/template-overviews/creative/" className="btn btn-default btn-xl sr-button">Download Now!</a>
-              </div>
-            </div>
-          </aside>
-
-          <section id="contact">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-8 col-lg-offset-2 text-center">
-                  <h2 className="section-heading">Let's Get In Touch!</h2>
-                  <hr className="primary" />
-                  <p>Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
-                </div>
-                <div className="col-lg-4 col-lg-offset-2 text-center">
-                  <i className="fa fa-phone fa-3x sr-contact"></i>
-                  <p>123-456-6789</p>
-                </div>
-                <div className="col-lg-4 text-center">
-                  <i className="fa fa-envelope-o fa-3x sr-contact"></i>
-                  <p><a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a></p>
-                </div>
-              </div>
-            </div>
+          <section id="contact" className="bg-dark">
+            <Grid>
+              <Row>
+                <Col lg={12} className="text-center">
+                  <h2 className="section-heading">
+                    Contactez-nous
+                  </h2>
+                  <hr className="light" />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} mdOffset={2}>
+                  <p>
+                    <address>
+                      5 Rue des Réservoirs
+                      <br />
+                      94340 Joinville Le Pont
+                    </address>
+                  </p>
+                  <p>
+                    <i className="fa fa-envelope-o"></i>
+                    &nbsp;
+                    <a href="mailto:monadresse@exemple.com">
+                      monadresse@exemple.com
+                    </a>
+                  </p>
+                  <p>
+                    <i className="fa fa-phone sr-contact"></i>
+                    &nbsp;
+                    06.12.34.56.78
+                  </p>
+                </Col>
+                <Col md={6}>
+                  <FormGroup bsSize="large">
+                    <FormControl type="text" placeholder="Votre nom" />
+                  </FormGroup>
+                  <FormGroup bsSize="large">
+                    <FormControl type="email" placeholder="Votre email" />
+                  </FormGroup>
+                  <FormGroup bsSize="large">
+                    <FormControl type="tel" placeholder="Votre téléphone" />
+                  </FormGroup>
+                  <FormGroup bsSize="large">
+                    <FormControl componentClass="textarea"
+                                 placeholder="Votre message"
+                                 rows={6} />
+                  </FormGroup>
+                  <p className="text-center">
+                    <Button type="submit" bsStyle="primary" bsSize="large">
+                      Envoyer
+                    </Button>
+                  </p>
+                </Col>
+              </Row>
+            </Grid>
           </section>
         </div>
       </DocumentTitle>
