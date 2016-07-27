@@ -1,3 +1,4 @@
+"use strict";
 
 import React from 'react';
 import DocumentTitle from 'react-document-title';
@@ -10,18 +11,57 @@ import {
   FormControl,
   Button
 } from 'react-bootstrap';
+import Waypoint from 'react-waypoint';
+import classNames from 'classnames';
 
 import 'bootstrap/less/bootstrap.less';
 import 'font-awesome/less/font-awesome.less';
 import '../less/creative.less';
 
 export default class Index extends React.Component {
+
+  state = {
+    activeSection: 'top'
+  };
+
+  renderScrollLink(key, label) {
+    return (
+      <li className={classNames({ active: this.state.activeSection === key })} key={key}>
+        <a className="page-scroll" href={'#' + key}>
+          {label}
+        </a>
+      </li>
+    );
+  }
+
+  renderSectionLimit({ above, below }) {
+    return (
+      <Waypoint
+        onEnter={({ previousPosition }) => {
+          if (previousPosition === Waypoint.above) {
+            this.setState({ activeSection: above });
+          }
+        }}
+        onLeave={({ currentPosition }) => {
+          if (currentPosition === Waypoint.above) {
+            this.setState({ activeSection: below });
+          }
+        }}
+        topOffset="80px"
+      />
+    );
+  }
   
   render() {
     return (
       <DocumentTitle title={config.siteTitle}>
         <div>
-          <nav id="mainNav" className="navbar navbar-default navbar-fixed-top">
+          <nav id="mainNav" className={classNames({
+            'navbar': true,
+            'navbar-default': true,
+            'navbar-fixed-top': true,
+            'affix': this.state.activeSection != 'top'
+          })}>
             <div className="container-fluid">
               <div className="navbar-header">
                 <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -34,15 +74,11 @@ export default class Index extends React.Component {
 
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav navbar-right">
-                  <li>
-                    <a className="page-scroll" href="#societe">Société</a>
-                  </li>
-                  <li>
-                    <a className="page-scroll" href="#services">Services</a>
-                  </li>
-                  <li>
-                    <a className="page-scroll" href="#contact">Contact</a>
-                  </li>
+                  {[
+                    this.renderScrollLink('societe', 'Société'),
+                    this.renderScrollLink('services', 'Services'),
+                    this.renderScrollLink('contact', 'Contact')
+                  ]}
                 </ul>
               </div>
             </div>
@@ -61,6 +97,8 @@ export default class Index extends React.Component {
             </div>
           </header>
 
+          {this.renderSectionLimit({ above: 'top', below: 'societe' })}
+
           <section className="bg-primary" id="societe">
             <div className="container">
               <div className="row">
@@ -70,16 +108,18 @@ export default class Index extends React.Component {
                   </h2>
                   <hr className="light" />
                   <p className="text-faded">
-                    Investigations des sols, gaz du sol et eaux souterrainnes dans des zones à accès difficile
+                    Investigations des sols, gaz du sol et eaux souterrainnes dans des zones à accès difficile.
                   </p>
                   <p className="text-faded">
-                    Plus de 500 interventions, depuis 2014, de sondages environnementaux
-                    dans le cadre de diagnostics de pollution des sols
+                    Depuis 2014, plus de 500 interventions de sondages environnementaux
+                    dans le cadre de diagnostics de pollution des sols.
                   </p>
                 </div>
               </div>
             </div>
           </section>
+
+          {this.renderSectionLimit({ above: 'societe', below: 'services' })}
 
           <section id="services">
             <div className="container container-small">
@@ -122,6 +162,8 @@ export default class Index extends React.Component {
             </div>
           </section>
 
+          {this.renderSectionLimit({ above: 'services', below: 'contact' })}
+
           <section id="contact" className="bg-dark">
             <Grid>
               <Row>
@@ -134,13 +176,11 @@ export default class Index extends React.Component {
               </Row>
               <Row>
                 <Col md={4} mdOffset={2}>
-                  <p>
-                    <address>
-                      5 Rue des Réservoirs
-                      <br />
-                      94340 Joinville Le Pont
-                    </address>
-                  </p>
+                  <address>
+                    5 Rue des Réservoirs
+                    <br />
+                    94340 Joinville Le Pont
+                  </address>
                   <p>
                     <i className="fa fa-envelope-o"></i>
                     &nbsp;
