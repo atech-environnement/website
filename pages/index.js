@@ -13,21 +13,34 @@ import {
 } from 'react-bootstrap';
 import Waypoint from 'react-waypoint';
 import classNames from 'classnames';
+import smoothScroll from 'smooth-scroll';
 
 import 'bootstrap/less/bootstrap.less';
 import 'font-awesome/less/font-awesome.less';
 import '../less/creative.less';
 
+smoothScroll.init({
+  speed: 500,
+  easing: 'easeInOutCubic',
+  offset: 50,
+  updateURL: false
+});
+
 export default class Index extends React.Component {
 
   state = {
-    activeSection: 'top'
+    activeSection: 'page-top'
   };
+
+  handleScrollLinkClick(event, key) {
+    event.preventDefault();
+    smoothScroll.animateScroll('#' + key);
+  }
 
   renderScrollLink(key, label) {
     return (
       <li className={classNames({ active: this.state.activeSection === key })} key={key}>
-        <a className="page-scroll" href={'#' + key}>
+        <a className="page-scroll" href={'#' + key} onClick={e => this.handleScrollLinkClick(e, key)}>
           {label}
         </a>
       </li>
@@ -60,14 +73,16 @@ export default class Index extends React.Component {
             'navbar': true,
             'navbar-default': true,
             'navbar-fixed-top': true,
-            'affix': this.state.activeSection != 'top'
+            'affix': this.state.activeSection != 'page-top'
           })}>
             <div className="container-fluid">
               <div className="navbar-header">
                 <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                   <span className="sr-only">Toggle navigation</span> Menu <i className="fa fa-bars"></i>
                 </button>
-                <a className="navbar-brand page-scroll" href="#page-top">
+                <a className="navbar-brand page-scroll"
+                   href="#page-top"
+                   onClick={e => this.handleScrollLinkClick(event, 'page-top')}>
                   Atech Environnement
                 </a>
               </div>
@@ -84,7 +99,7 @@ export default class Index extends React.Component {
             </div>
           </nav>
 
-          <header>
+          <header id="page-top">
             <div className="header-content">
               <div className="header-content-inner">
                 <h1 id="homeHeading">
@@ -97,7 +112,7 @@ export default class Index extends React.Component {
             </div>
           </header>
 
-          {this.renderSectionLimit({ above: 'top', below: 'societe' })}
+          {this.renderSectionLimit({ above: 'page-top', below: 'societe' })}
 
           <section className="bg-primary" id="societe">
             <div className="container">
