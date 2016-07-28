@@ -82,7 +82,7 @@ export default class Index extends React.Component {
                 </button>
                 <a className="navbar-brand page-scroll"
                    href="#page-top"
-                   onClick={e => this.handleScrollLinkClick(event, 'page-top')}>
+                   onClick={e => this.handleScrollLinkClick(e, 'page-top')}>
                   Atech Environnement
                 </a>
               </div>
