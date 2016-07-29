@@ -13,7 +13,6 @@ import {
 } from 'react-bootstrap';
 import Waypoint from 'react-waypoint';
 import classNames from 'classnames';
-import smoothScroll from 'smooth-scroll';
 
 import 'jquery';
 import toastr from 'toastr';
@@ -22,17 +21,22 @@ toastr.options = {
   positionClass: "toast-bottom-right"
 };
 
+let smoothScroll;
+if (typeof document !== 'undefined') {
+  smoothScroll = require('smooth-scroll');
+
+  smoothScroll.init({
+    speed: 500,
+    easing: 'easeInOutCubic',
+    offset: 50,
+    updateURL: false
+  });
+}
+
 import 'bootstrap/less/bootstrap.less';
 import 'font-awesome/less/font-awesome.less';
 import '../less/creative.less';
 import 'toastr/toastr.less';
-
-smoothScroll.init({
-  speed: 500,
-  easing: 'easeInOutCubic',
-  offset: 50,
-  updateURL: false
-});
 
 export default class Index extends React.Component {
 
