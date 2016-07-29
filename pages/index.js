@@ -29,7 +29,14 @@ smoothScroll.init({
 export default class Index extends React.Component {
 
   state = {
-    activeSection: 'page-top'
+    activeSection: 'page-top',
+    contactForm: {
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      message: ''
+    }
   };
 
   handleScrollLinkClick(event, key) {
@@ -211,21 +218,41 @@ export default class Index extends React.Component {
                 </Col>
                 <Col md={6}>
                   <FormGroup bsSize="large">
-                    <FormControl type="text" placeholder="Votre nom" />
+                    <FormControl type="text"
+                                 placeholder="Votre nom"
+                                 value={this.state.contactForm.name}
+                                 onChange={this.handleContactFormChange('name')} />
                   </FormGroup>
                   <FormGroup bsSize="large">
-                    <FormControl type="email" placeholder="Votre email" />
+                    <FormControl type="email"
+                                 placeholder="Votre email"
+                                 value={this.state.contactForm.email}
+                                 onChange={this.handleContactFormChange('email')} />
                   </FormGroup>
                   <FormGroup bsSize="large">
-                    <FormControl type="tel" placeholder="Votre téléphone" />
+                    <FormControl type="tel"
+                                 placeholder="Votre téléphone"
+                                 value={this.state.contactForm.phone}
+                                 onChange={this.handleContactFormChange('phone')} />
+                  </FormGroup>
+                  <FormGroup bsSize="large">
+                    <FormControl type="text"
+                                 placeholder="Votre société"
+                                 value={this.state.contactForm.company}
+                                 onChange={this.handleContactFormChange('company')} />
                   </FormGroup>
                   <FormGroup bsSize="large">
                     <FormControl componentClass="textarea"
                                  placeholder="Votre message"
-                                 rows={6} />
+                                 rows={6}
+                                 value={this.state.contactForm.message}
+                                 onChange={this.handleContactFormChange('message')} />
                   </FormGroup>
                   <p className="text-center">
-                    <Button type="submit" bsStyle="primary" bsSize="large">
+                    <Button type="submit"
+                            bsStyle="primary"
+                            bsSize="large"
+                            onClick={this.handleContactFormSubmit} >
                       Envoyer
                     </Button>
                   </p>
@@ -236,5 +263,41 @@ export default class Index extends React.Component {
         </div>
       </DocumentTitle>
     );
+  }
+
+  handleContactFormSubmit = () => {
+    const contact = this.state.contactForm;
+    const formData = new FormData();
+    Object.keys(contact).forEach(field => {
+      formData.append(field, contact[field]);
+    });
+    fetch('https://hooks.zapier.com/hooks/catch/1573239/4f0mxe/', {
+      method: 'POST',
+      body: formData
+    }).then(() => {
+      console.log('Email sent');
+      this.resetContactForm();
+    });
+  };
+
+  handleContactFormChange(field) {
+    return e => this.setState({
+      contactForm: {
+        ...this.state.contactForm,
+        [field]: e.target.value
+      }
+    });
+  }
+
+  resetContactForm() {
+    this.setState({
+      contactForm: {
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        message: ''
+      }
+    })
   }
 }
