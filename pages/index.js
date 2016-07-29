@@ -271,7 +271,9 @@ export default class Index extends React.Component {
     Object.keys(contact).forEach(field => {
       formData.append(field, contact[field]);
     });
-    fetch('https://hooks.zapier.com/hooks/catch/1573239/4f0mxe/', {
+    formData.append('_replyto', contact.email);
+    formData.append('_subject', '[Contact] Message de ' + contact.name);
+    fetch('http://mailthis.to/jcdelmas', {
       method: 'POST',
       body: formData
     }).then(() => {
