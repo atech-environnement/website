@@ -33,7 +33,6 @@ if (typeof document !== 'undefined') {
   });
 }
 
-import 'bootstrap/less/bootstrap.less';
 import 'font-awesome/less/font-awesome.less';
 import '../less/creative.less';
 import 'toastr/toastr.less';
@@ -88,7 +87,7 @@ export default class Index extends React.Component {
     return (
       <DocumentTitle title={config.siteTitle}>
         <div>
-          <nav id="mainNav" className={classNames({
+          <nav id="main-nav" className={classNames({
             'navbar': true,
             'navbar-default': true,
             'navbar-fixed-top': true,
@@ -96,9 +95,10 @@ export default class Index extends React.Component {
           })}>
             <div className="container-fluid">
               <div className="navbar-header">
-                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                  <span className="sr-only">Toggle navigation</span> Menu <i className="fa fa-bars"></i>
-                </button>
+                {/*<button type="button" className="navbar-toggle collapsed">*/}
+                  {/*<span className="sr-only">Toggle navigation</span>*/}
+                  {/*<i className="fa fa-bars"></i>*/}
+                {/*</button>*/}
                 <a className="navbar-brand page-scroll"
                    href="#page-top"
                    onClick={e => this.handleScrollLinkClick(e, 'page-top')}>
@@ -106,7 +106,7 @@ export default class Index extends React.Component {
                 </a>
               </div>
 
-              <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <div className="collapse navbar-collapse">
                 <ul className="nav navbar-nav navbar-right">
                   {[
                     this.renderScrollLink('societe', 'Société'),
@@ -165,19 +165,19 @@ export default class Index extends React.Component {
               </div>
               <div className="row">
                 <div className="col-lg-12">
-                  <h3>Avantages de la technique</h3>
+                  <h3 className="text-center">Avantages de la technique</h3>
                   <ul>
                     <li>Contraintes d’accès très limités, L1m x l1m x H1.90m</li>
                     <li>Impact sur la zone d’intervention pendant et après chantier minime</li>
                     <li>Machines électriques (intervention en espace confiné)</li>
                     <li>Matériaux non remaniés pour un relevé lithologique précis</li>
                   </ul>
-                  <h3>Limites techniques</h3>
+                  <h3 className="text-center">Limites techniques</h3>
                   <ul>
                     <li>Investigations jusqu’à 8 m de profondeur en fonction de la géologie</li>
                     <li>Diamètre de forage de Ø40mm à Ø80mm maximum</li>
                   </ul>
-                  <h3>Politique qualité securité</h3>
+                  <h3 className="text-center">Politique qualité securité</h3>
                   <ul>
                     <li>
                       Possibilité de mise à disposition d’un détecteur de réseaux et d’un explosimètre
@@ -209,26 +209,28 @@ export default class Index extends React.Component {
                 </Col>
               </Row>
               <Row>
-                <Col md={4} mdOffset={2}>
-                  <address>
-                    5 Rue des Réservoirs
-                    <br />
-                    94340 Joinville Le Pont
-                  </address>
-                  <p>
-                    <i className="fa fa-envelope-o"></i>
-                    &nbsp;
-                    <a href="mailto:monadresse@exemple.com">
-                      monadresse@exemple.com
-                    </a>
-                  </p>
-                  <p>
-                    <i className="fa fa-phone sr-contact"></i>
-                    &nbsp;
-                    06.12.34.56.78
-                  </p>
+                <Col md={4} mdOffset={2} sm={5}>
+                  <div className="contact-infos">
+                    <address>
+                      5 Rue des Réservoirs
+                      <br />
+                      94340 Joinville Le Pont
+                    </address>
+                    <p>
+                      <i className="fa fa-envelope-o"></i>
+                      &nbsp;
+                      <a href="mailto:monadresse@exemple.com">
+                        monadresse@exemple.com
+                      </a>
+                    </p>
+                    <p>
+                      <i className="fa fa-phone sr-contact"></i>
+                      &nbsp;
+                      06.12.34.56.78
+                    </p>
+                  </div>
                 </Col>
-                <Col md={6}>
+                <Col md={6} sm={7}>
                   <FormGroup bsSize="large">
                     <FormControl type="text"
                                  placeholder="Votre nom"
