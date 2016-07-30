@@ -3,18 +3,17 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
 import { config } from 'config';
-import {
-  Grid,
-  Row,
-  Col,
-  FormGroup,
-  FormControl,
-  Button
-} from 'react-bootstrap';
+
+import Grid from'react-bootstrap/lib/Grid';
+import Row from'react-bootstrap/lib/Row';
+import Col from'react-bootstrap/lib/Col';
+import FormGroup from'react-bootstrap/lib/FormGroup';
+import FormControl from'react-bootstrap/lib/FormControl';
+import Button from'react-bootstrap/lib/Button';
+
 import Waypoint from 'react-waypoint';
 import classNames from 'classnames';
 
-import 'jquery';
 import toastr from 'toastr';
 
 toastr.options = {
@@ -33,7 +32,6 @@ if (typeof document !== 'undefined') {
   });
 }
 
-import 'font-awesome/less/font-awesome.less';
 import '../less/creative.less';
 import 'toastr/toastr.less';
 
