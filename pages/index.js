@@ -217,14 +217,14 @@ export default class Index extends React.Component {
                     <p>
                       <i className="fa fa-envelope-o"></i>
                       &nbsp;
-                      <a href="mailto:monadresse@exemple.com">
-                        monadresse@exemple.com
+                      <a href={'mailto:' + config.contactEmail}>
+                        {config.contactEmail}
                       </a>
                     </p>
                     <p>
                       <i className="fa fa-phone sr-contact"></i>
                       &nbsp;
-                      06.12.34.56.78
+                      {config.contactPhone}
                     </p>
                   </div>
                 </Col>
@@ -285,7 +285,7 @@ export default class Index extends React.Component {
     });
     formData.append('_replyto', contact.email);
     formData.append('_subject', '[Contact] Message de ' + contact.name);
-    fetch('http://mailthis.to/jcdelmas', {
+    fetch(config.mailthisUrl, {
       method: 'POST',
       body: formData
     }).then(() => {
