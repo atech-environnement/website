@@ -32,7 +32,7 @@ if (typeof document !== 'undefined') {
   });
 }
 
-import '../less/creative.less';
+import '../assets/main.less';
 import 'toastr/toastr.less';
 
 export default class Index extends React.Component {
