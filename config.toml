@@ -1,7 +1,8 @@
 siteTitle="Atech environnement"
 linkPrefix = "/website"
 
-mailthisUrl = "//mailthis.to/jcdelmas"
+#mailthisUrl = "http://mailthis.to/jcdelmas"
+mailthisUrl = "http://mailthis.to/atech-environnement"
 
 contactEmail = "monadresse@exemple.com"
 contactPhone = "06.12.34.56.78"
