@@ -227,6 +227,7 @@ export default class Index extends React.Component {
                       {config.contactPhone}
                     </p>
                   </div>
+                  <div className="contact-map"></div>
                 </Col>
                 <Col md={6} sm={7}>
                   <FormGroup bsSize="large">
