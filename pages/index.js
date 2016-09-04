@@ -230,45 +230,55 @@ export default class Index extends React.Component {
                   <div className="contact-map"></div>
                 </Col>
                 <Col md={6} sm={7}>
-                  <FormGroup bsSize="large">
-                    <FormControl type="text"
-                                 placeholder="Votre nom"
-                                 value={this.state.contactForm.name}
-                                 onChange={this.handleContactFormChange('name')} />
-                  </FormGroup>
-                  <FormGroup bsSize="large">
-                    <FormControl type="email"
-                                 placeholder="Votre email"
-                                 value={this.state.contactForm.email}
-                                 onChange={this.handleContactFormChange('email')} />
-                  </FormGroup>
-                  <FormGroup bsSize="large">
-                    <FormControl type="tel"
-                                 placeholder="Votre téléphone"
-                                 value={this.state.contactForm.phone}
-                                 onChange={this.handleContactFormChange('phone')} />
-                  </FormGroup>
-                  <FormGroup bsSize="large">
-                    <FormControl type="text"
-                                 placeholder="Votre société"
-                                 value={this.state.contactForm.company}
-                                 onChange={this.handleContactFormChange('company')} />
-                  </FormGroup>
-                  <FormGroup bsSize="large">
-                    <FormControl componentClass="textarea"
-                                 placeholder="Votre message"
-                                 rows={6}
-                                 value={this.state.contactForm.message}
-                                 onChange={this.handleContactFormChange('message')} />
-                  </FormGroup>
-                  <p className="text-center">
-                    <Button type="submit"
-                            bsStyle="primary"
-                            bsSize="large"
-                            onClick={this.handleContactFormSubmit} >
-                      Envoyer
-                    </Button>
-                  </p>
+                  <form name="contact" ref="contactForm" onSubmit={this.handleContactFormSubmit}>
+                    <FormGroup bsSize="large">
+                      <FormControl type="text"
+                                   name="name"
+                                   placeholder="Votre nom"
+                                   required={true}
+                                   value={this.state.contactForm.name}
+                                   onChange={this.handleContactFormChange('name')} />
+                    </FormGroup>
+                    <FormGroup bsSize="large">
+                      <FormControl type="email"
+                                   name="email"
+                                   placeholder="Votre email"
+                                   required={true}
+                                   value={this.state.contactForm.email}
+                                   onChange={this.handleContactFormChange('email')} />
+                    </FormGroup>
+                    <FormGroup bsSize="large">
+                      <FormControl type="tel"
+                                   name="tel"
+                                   placeholder="Votre téléphone"
+                                   value={this.state.contactForm.phone}
+                                   onChange={this.handleContactFormChange('phone')} />
+                    </FormGroup>
+                    <FormGroup bsSize="large">
+                      <FormControl type="text"
+                                   name="company"
+                                   placeholder="Votre société"
+                                   required={true}
+                                   value={this.state.contactForm.company}
+                                   onChange={this.handleContactFormChange('company')} />
+                    </FormGroup>
+                    <FormGroup bsSize="large">
+                      <FormControl componentClass="textarea"
+                                   name="message"
+                                   placeholder="Votre message"
+                                   required={true}
+                                   rows={6}
+                                   value={this.state.contactForm.message}
+                                   onChange={this.handleContactFormChange('message')} />
+                    </FormGroup>
+                    <p className="text-center">
+                      <Button type="submit"
+                              bsStyle="primary"
+                              bsSize="large">
+                        Envoyer
+                      </Button>
+                    </p>
+                  </form>
                 </Col>
               </Row>
             </Grid>
@@ -278,9 +288,19 @@ export default class Index extends React.Component {
     );
   }
 
-  handleContactFormSubmit = () => {
+  handleContactFormSubmit = e => {
+    e.preventDefault();
+
     const contact = this.state.contactForm;
     const formData = new FormData();
+    
+    const form = this.refs.contactForm;
+    for (let i = 0; i < form.elements.length; i++) {
+      if (!form.elements[i].validity.valid) {
+        return false;
+      }
+    }
+
     Object.keys(contact).forEach(field => {
       formData.append(field, contact[field]);
     });
@@ -291,7 +311,7 @@ export default class Index extends React.Component {
       body: formData
     }).then(() => {
       toastr.success('Votre message a bien été envoyé&nbsp;!');
-      this.resetContactForm();
+      setTimeout(() => this.resetContactForm(), 1);
     });
   };
 
