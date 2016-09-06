@@ -1,5 +1,5 @@
 siteTitle="Atech environnement"
-linkPrefix = "/website"
+#linkPrefix = "/website"
 
 #mailthisUrl = "http://mailthis.to/jcdelmas"
 mailthisUrl = "http://mailthis.to/atech-environnement"
