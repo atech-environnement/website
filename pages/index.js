@@ -157,12 +157,21 @@ export default class Index extends React.Component {
             <div className="container container-small">
               <div className="row">
                 <div className="col-lg-12 text-center">
-                  <h2 className="section-heading">Services</h2>
+                  <h2 className="section-heading">
+                    Services
+                  </h2>
                   <hr className="primary" />
                 </div>
               </div>
               <div className="row">
                 <div className="col-lg-12">
+                  <p className="text-center">
+                    <a href={config.serviceFileUrl} className="btn btn-primary">
+                      <i className="fa fa-download"></i>
+                      &nbsp;
+                      Liste des prestations
+                    </a>
+                  </p>
                   <h3 className="text-center">Avantages de la technique</h3>
                   <ul>
                     <li>Contraintes d’accès très limités, L1m x l1m x H1.90m</li>
