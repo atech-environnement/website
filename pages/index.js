@@ -174,9 +174,9 @@ export default class Index extends React.Component {
                   </p>
                   <h3 className="text-center">Avantages de la technique</h3>
                   <ul>
-                    <li>Contraintes d’accès très limités, L1m x l1m x H1.90m</li>
+                    <li>Contraintes d’accès très limitées, L1m x l1m x H1.90m</li>
                     <li>Impact sur la zone d’intervention pendant et après chantier minime</li>
-                    <li>Machines électriques (intervention en espace confiné)</li>
+                    <li>Machines électriques (intervention en espace confiné) et également thermique</li>
                     <li>Matériaux non remaniés pour un relevé lithologique précis</li>
                   </ul>
                   <h3 className="text-center">Limites techniques</h3>
@@ -194,7 +194,7 @@ export default class Index extends React.Component {
                       du Travail et Risque Chimique Niveau 2
                     </li>
                     <li>
-                      Sensibilisation aux risques liés à l’activité et notament aux gestes et postures.
+                      Sensibilisation aux risques liés à l’activité et notamment aux gestes et postures.
                       Recherche continue d’amélioration du poste de travail et de réduction des temps d’expositions.
                     </li>
                   </ul>
