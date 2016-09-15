@@ -235,6 +235,14 @@ export default class Index extends React.Component {
                       &nbsp;
                       {config.contactPhone}
                     </p>
+                    <p className="social-links">
+                      <a className="social-link" href="https://www.linkedin.com/company/atech-environnement" target="_blank">
+                        <i className="fa fa-linkedin"></i>
+                      </a>
+                      <a className="social-link" href="https://www.facebook.com/ATECH-Environnement-235555656842322/" target="_blank">
+                        <i className="fa fa-facebook"></i>
+                      </a>
+                    </p>
                   </div>
                   <div className="contact-map"></div>
                 </Col>
