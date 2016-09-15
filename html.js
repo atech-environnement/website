@@ -52,7 +52,7 @@ module.exports = React.createClass({
         </head>
         <body>
           <div id="react-mount" dangerouslySetInnerHTML={{ __html: this.props.body }} />
-          <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+          <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
           <script src={prefixLink(`/bundle.js?t=${BUILD_TIME}`)} />
         </body>
       </html>
