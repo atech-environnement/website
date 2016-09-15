@@ -31,6 +31,7 @@ module.exports = React.createClass({
           <title>{title}</title>
           <meta name="description"
                 content="Investigations des sols, gaz du sol et eaux souterrainnes dans des zones à accès difficile." />
+          <meta name="keywords" content="sondage de sol; carottier portatif, marteau à percussion portatif, piézair" />
           <meta property="og:title" content={title} />
           <meta property="og:type" content="website" />
 
