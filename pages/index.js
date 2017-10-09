@@ -219,9 +219,9 @@ export default class Index extends React.Component {
                 <Col md={4} mdOffset={2} sm={5}>
                   <div className="contact-infos">
                     <address>
-                      5 Rue des Réservoirs
+                      12 Rue de l'Église
                       <br />
-                      94340 Joinville Le Pont
+                      94340 Joinville-le-Pont
                     </address>
                     <p>
                       <i className="fa fa-envelope-o"></i>
