@@ -11,7 +11,8 @@ import FormGroup from'react-bootstrap/lib/FormGroup';
 import FormControl from'react-bootstrap/lib/FormControl';
 import Button from'react-bootstrap/lib/Button';
 
-import Waypoint from 'react-waypoint';
+import { Link } from 'react-scroll';
+
 import classNames from 'classnames';
 
 import toastr from 'toastr';
@@ -19,18 +20,6 @@ import toastr from 'toastr';
 toastr.options = {
   positionClass: "toast-bottom-right"
 };
-
-let smoothScroll;
-if (typeof document !== 'undefined') {
-  smoothScroll = require('smooth-scroll');
-
-  smoothScroll.init({
-    speed: 500,
-    easing: 'easeInOutCubic',
-    offset: 50,
-    updateURL: false
-  });
-}
 
 import '../assets/main.less';
 import 'toastr/toastr.less';
@@ -48,37 +37,27 @@ export default class Index extends React.Component {
     }
   };
 
-  handleScrollLinkClick(event, key) {
-    event.preventDefault();
-    smoothScroll.animateScroll('#' + key);
-  }
-
   renderScrollLink(key, label) {
     return (
       <li className={classNames({ active: this.state.activeSection === key })} key={key}>
-        <a className="page-scroll" href={'#' + key} onClick={e => this.handleScrollLinkClick(e, key)}>
+        <Link activeClass="active"
+              to={key}
+              href={`#${key}`}
+              spy={true}
+              smooth={true}
+              offset={-50}
+              onSetActive={this.activeSesionHandler(key)}>
           {label}
-        </a>
+        </Link>
       </li>
     );
   }
 
-  renderSectionLimit({ above, below }) {
-    return (
-      <Waypoint
-        onEnter={({ previousPosition }) => {
-          if (previousPosition === Waypoint.above) {
-            this.setState({ activeSection: above });
-          }
-        }}
-        onLeave={({ currentPosition }) => {
-          if (currentPosition === Waypoint.above) {
-            this.setState({ activeSection: below });
-          }
-        }}
-        topOffset="80px"
-      />
-    );
+  activeSesionHandler(key) {
+    return () => {
+      console.log('Set active: ' + key);
+      return this.setState({ activeSection: key });
+    };
   }
   
   render() {
@@ -89,19 +68,19 @@ export default class Index extends React.Component {
             'navbar': true,
             'navbar-default': true,
             'navbar-fixed-top': true,
-            'affix': this.state.activeSection != 'page-top'
+            'affix': this.state.activeSection !== 'page-top'
           })}>
             <div className="container-fluid">
               <div className="navbar-header">
-                {/*<button type="button" className="navbar-toggle collapsed">*/}
-                  {/*<span className="sr-only">Toggle navigation</span>*/}
-                  {/*<i className="fa fa-bars"></i>*/}
-                {/*</button>*/}
-                <a className="navbar-brand page-scroll"
-                   href="#page-top"
-                   onClick={e => this.handleScrollLinkClick(e, 'page-top')}>
+                <Link className="navbar-brand page-scroll"
+                      to="page-top"
+                      href="#page-top"
+                      spy={true}
+                      smooth={true}
+                      offset={-50}
+                      onSetActive={this.activeSesionHandler('page-top')}>
                   Atech Environnement
-                </a>
+                </Link>
               </div>
 
               <div className="collapse navbar-collapse">
@@ -129,8 +108,6 @@ export default class Index extends React.Component {
             </div>
           </header>
 
-          {this.renderSectionLimit({ above: 'page-top', below: 'societe' })}
-
           <section className="bg-primary" id="societe">
             <div className="container">
               <div className="row">
@@ -150,8 +127,6 @@ export default class Index extends React.Component {
               </div>
             </div>
           </section>
-
-          {this.renderSectionLimit({ above: 'societe', below: 'services' })}
 
           <section id="services">
             <div className="container container-small">
@@ -202,8 +177,6 @@ export default class Index extends React.Component {
               </div>
             </div>
           </section>
-
-          {this.renderSectionLimit({ above: 'services', below: 'contact' })}
 
           <section id="contact" className="bg-dark">
             <Grid>
