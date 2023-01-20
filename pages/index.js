@@ -102,7 +102,7 @@ export default class Index extends React.Component {
                   Atech Environnement
                 </h1>
                 <p>
-                  Prestations d'investigation des sols au carottier battu portatif
+                  Prestation d'investigation des sols au carottier battu portatif
                 </p>
               </div>
             </div>
